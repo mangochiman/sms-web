@@ -1,0 +1,25 @@
+development:
+  adapter: mysql
+  username: root
+  database: sms_dev
+  password: password
+  host: localhost
+  pool: 500
+
+production:
+  adapter: mysql
+  username: user
+  database: sms_prod
+  password: password
+  host: localhost
+  pool: 500
+
+test:
+  adapter: mysql
+  username: root
+  database: sms_test
+  password: password
+  host: localhost
+  pool: 500
+
+
