@@ -7,9 +7,10 @@ class PagesController < ApplicationController
     
   end
 
-  def signup
-
+  def sign_up
+    render :layout => false
   end
+
 
   def login
 
