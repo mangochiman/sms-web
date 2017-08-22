@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   end
 
   def documentation
-
+    
   end
 
   def signup

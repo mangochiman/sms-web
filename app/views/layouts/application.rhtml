@@ -45,11 +45,11 @@
         <!--<div id="logo" class="grid_4 alpha"></div>-->
         <div id="menu" class="grid_8 omega">
           <ul id="nav">
-            <li><a href="/" class="active">Home</a></li>
-            <li><a href="/documentation">How to</a></li>
-            <li><a href="/sign_up">Signup</a></li>
-            <li><a href="/login">Login</a></li>
-            <li class="last"><a href="contact.html">Contact</a></li>
+            <li><a href="/" id="home" >Home</a></li>
+            <li><a href="/documentation" id="documentation">How to</a></li>
+            <li><a href="/sign_up" id="signup">Signup</a></li>
+            <li><a href="/login" id="login">Login</a></li>
+            <li class="last"><a id="contact" href="/contact">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -68,19 +68,22 @@
     <div class="clear"></div>
     <!-- Main Section -->
     <div id="content" class="shadow">
+      <%= yield %>
       <div class="container_12">
         <div class="grid_3">
           <h1>Introducing SMS API</h1>
-          <p> We are happy to introduce an SMS API for sending SMS for free. YES you heard it its free. Offering a simple way to send <b>FREE SMS</b> to your clients. Click <a href="#">here</a> to learn more </p>
+          <p> We are happy to introduce an SMS API for sending SMS for free. YES you heard it its free. Offering a simple way to web developers send <b>FREE SMS</b> to your clients. Click <a href="#">here</a> to learn more
+          We understand that developers are always busy working on logic
+          </p>
         </div>
         <div class="grid_3 new-bullets">
-          <h1>Features</h1>
+          <h1>Why use this API?</h1>
           <ul>
-            <li>Based on the 960 grid system</li>
-            <li>Content slider on homepage</li>
-            <li>Cufón text replacement</li>
-            <li>Gallery using colorbox</li>
-            <li>Contact form</li>
+            <li>Free. <b>YES</b> that's true!!</li>
+            <li>Too easy to use. In less than one minute you are done</li>
+            <li>Reliable - Messages are delivered on time</li>
+            <li>Batch messages are supported</li>
+            <li>You can ask our support team whenever you have a query</li>
           </ul>
         </div>
         <div class="grid_3">
@@ -89,28 +92,24 @@
             IE7/8, Firefox, Opera, Chrome and Safari. </p>
           <img src="/soho_template/images/browsers.png" alt="" /> </div>
         <div class="grid_3 new-bullets">
-          <h1>Other files</h1>
-          <p> Here is just a few other examples of what can be done with this template: </p>
+          <h1>Sample Code</h1>
+          <p> Find below on how you can use the API in your code: </p>
           <ul>
-            <li><a href="homepage-2.html">Homepage - static image</a></li>
-            <li><a href="homepage-3.html">Homepage - 3 Columns with icons</a> </li>
-            <li><a href="about-2.html">About page - menu on left</a></li>
+            <li><a href="/documentation#python">Python</a> </li>
+            <li><a href="/documentation#ruby-on-rails">Ruby on Rails</a></li>
+            <li><a href="/documentation#php">PHP</a> </li>
+            <li><a href="/documentation#java">Java</a> </li>
+            <li><a href="/documentation#node">Node.js</a> </li>
+            <li><a href="/documentation#c_hash">C#</a> </li>
+            <li><a href="/documentation#c_plus">C++</a> </li>
+            <li><a href="/documentation#perl">Perl</a> </li>
           </ul>
         </div>
       </div>
       <div class="clear"></div>
-      <div class="container_12 testimonials"> <span class="testimonial-message">&ldquo;Client testimonials can be placed here.&rdquo;</span> - client name </div>
+      <div class="container_12 testimonials"> <span class="testimonial-message">&ldquo;Life is really simple, but we insist on making it complicated.&rdquo;</span> ― Confucius </div>
       <div class="clear"></div>
-      <div class="container_12">
-        <div class="grid_6">
-          <h1>Sub Heading 2</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper ligula id quam scelerisque a hendrerit mauris vulputate. Praesent ultricies aliquet eros, id egestas tellus auctor id. Quisque aliquam varius mauris quis aliquet. Nulla facilisi. Ut laoreet, orci a feugiat bibendum, arcu risus adipiscing nisi, ornare faucibus ligula leo eget odio.</p>
-        </div>
-        <div class="grid_6">
-          <h1>Sub Heading 3</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper ligula id quam scelerisque a hendrerit mauris vulputate. Praesent ultricies aliquet eros, id egestas tellus auctor id. Quisque aliquam varius mauris quis aliquet. Nulla facilisi. Ut laoreet, orci a feugiat bibendum, arcu risus adipiscing nisi, ornare faucibus ligula leo eget odio.</p>
-        </div>
-      </div>
+      
       <div class="clear"></div>
     </div>
     <!-- End of Main Section -->
@@ -118,30 +117,27 @@
     <div id="footer">
       <div class="container_12">
         <div class="grid_3">
-          <h1>Our Favorites</h1>
+          <h1>Browse</h1>
           <ul>
-            <li><a href="#">Test link 1</a></li>
-            <li><a href="#">Test link 2</a></li>
-            <li><a href="#">Test link 3</a></li>
-            <li><a href="#">Test link 4</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/documentation">How To</a></li>
+            <li><a href="/sign_up">Sign up</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
+
         <div class="grid_3">
-          <h1>Navigation</h1>
+          <h1>Source code</h1>
           <ul>
-            <li><a href="#">Test link 1</a></li>
-            <li><a href="#">Test link 2</a></li>
-            <li><a href="#">Test link 3</a></li>
-            <li><a href="#">Test link 4</a></li>
-          </ul>
-        </div>
-        <div class="grid_3">
-          <h1>News</h1>
-          <ul>
-            <li><a href="#">Test link 1</a></li>
-            <li><a href="#">Test link 2</a></li>
-            <li><a href="#">Test link 3</a></li>
-            <li><a href="#">Test link 4</a></li>
+            <li><a href="/documentation#python">Python</a> </li>
+            <li><a href="/documentation#ruby-on-rails">Ruby on Rails</a></li>
+            <li><a href="/documentation#php">PHP</a> </li>
+            <li><a href="/documentation#java">Java</a> </li>
+            <li><a href="/documentation#node">Node.js</a> </li>
+            <li><a href="/documentation#c_hash">C#</a> </li>
+            <li><a href="/documentation#c_plus">C++</a> </li>
+            <li><a href="/documentation#perl">Perl</a> </li>
           </ul>
         </div>
         <div class="grid_3">
@@ -149,15 +145,9 @@
           <ul class="social-icons">
             <li><a href="#"><img src="/soho_template/images/facebook_32.png" alt="" /></a></li>
             <li><a href="#"><img src="/soho_template/images/twitter_32.png" alt="" /></a></li>
-            <li><a href="#"><img src="/soho_template/images/rss_32.png" alt="" /></a></li>
-            <li><a href="#"><img src="/soho_template/images/email_32.png" alt="" /></a></li>
+            <!--<li><a href="#"><img src="/soho_template/images/rss_32.png" alt="" /></a></li>
+            <li><a href="#"><img src="/soho_template/images/email_32.png" alt="" /></a></li>-->
           </ul>
-          <form action="#" method="post" id="submit-form">
-            <fieldset>
-              <input type="text" name="email" id="email" />
-              <input type="submit" />
-            </fieldset>
-          </form>
         </div>
         <div class="clear"></div>
       </div>
@@ -165,8 +155,8 @@
     <!-- End of Footer -->
     <div class="clear"></div>
     <div id="tail">
-      <div class="container_12">Copyright &copy; <a href="#">Domain Name</a> - All Rights Reserved | Design By <a target="_blank" href="http://www.codeplay.co.za">Code Play Studios</a></div>
+      <div class="container_12">Copyright &copy; <a href="#">webTechmw.com</a> - All Rights Reserved | Design By <a target="_blank" href="#">WebTech++</a></div>
     </div>
     <script type="text/javascript">Cufon.now();</script>
-    <div align=center>This template  downloaded form <a href='http://all-free-download.com/free-website-templates/'>free website templates</a></div></body>
+  </body>
 </html>
