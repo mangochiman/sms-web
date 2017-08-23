@@ -6,9 +6,14 @@ class User < ActiveRecord::Base
   set_primary_key :user_id
 
   has_many :user_roles, :dependent => :destroy
-
+  validates_presence_of :first_name, :message => ' can not be blank'
+  validates_presence_of :last_name, :message => ' can not be blank'
+  validates_presence_of :username, :message => ' can not be blank'
+  validates_presence_of :phone_number, :message => ' can not be blank'
+  validates_presence_of :email, :message => ' can not be blank'
   validates_uniqueness_of :username, :message => ' already taken'
   validates_uniqueness_of :email, :message => ' already taken'
+  validates_uniqueness_of :phone_number, :phone_number => ' already taken'
 
   #before_save :set_password
 
@@ -57,8 +62,22 @@ class User < ActiveRecord::Base
   end
 
   def self.generate_api_key
-     string = Digest::SHA1.hexdigest([Time.now, rand].join)
-     return string
+    string = Digest::SHA1.hexdigest([Time.now, rand].join)
+    return string
+  end
+
+  def self.new_user(params)
+    salt = self.random_string(10)
+    user = User.new
+    user.first_name = params[:first_name]
+    user.last_name = params[:last_name]
+    user.email = params[:email]
+    user.phone_number = params[:phone_number]
+    user.password = self.encrypt(params[:password], salt)
+    user.salt = salt
+    user.username = params[:username]
+    user.api_key = self.generate_api_key
+    return user
   end
 
 end
