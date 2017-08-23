@@ -37,11 +37,15 @@ class PagesController < ApplicationController
   end
 
   def sample_code
-    
+    render :layout => "details"
   end
 
   def contact
+    render :layout => "details"
+  end
 
+  def my_account
+    render :layout => "my_account"
   end
   
 end

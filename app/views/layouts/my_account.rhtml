@@ -3,45 +3,49 @@
   <head>
     <title>SMS WEB API</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <script type="text/javascript" src="/soho_template/scripts/jquery.js"></script>
     <script type="text/javascript" src="/soho_template/scripts/cufon.js"></script>
     <script src="/soho_template/scripts/TeXGyreAdventor_400.font.js" type="text/javascript"></script>
     <script type="text/javascript">
       Cufon.replace('h1,h2,h3,h4');
       Cufon.replace('#menu #nav li');
     </script>
-    <script type="text/javascript" src="/soho_template/scripts/slides.min.jquery.js"></script>
-    <script type="text/javascript">
-      $(function(){
-        $('#slider').slides({
-          preload: true,
-          preloadImage: '/soho_template/images/loading.gif',
-          play: 5000,
-          pause: 2500,
-          auto: 2000,
-          hoverPause: true,
-          animationComplete: function(current){
-            $('.caption').animate({
-              bottom:0
-            },200);
-          },
-          slidesLoaded: function() {
-            $('.caption').animate({
-              bottom:0
-            },200);
-          }
-        });
-      });
-    </script>
-    <link type="text/css" rel="stylesheet" href="/soho_template/styles/global.css" />
+    <script type="text/javascript" src="/soho_template/scripts/jquery.js"></script>
     <link type="text/css" rel="stylesheet" href="/soho_template/styles/reset.css" />
     <link type="text/css" rel="stylesheet" href="/soho_template/styles/960.css" />
     <link type="text/css" rel="stylesheet" href="/soho_template/styles/style.css" />
+    <style>
+      #copy{
+        cursor: pointer;
+        color: red !important;
+        font-size: 14pt;
+      }
+
+      input[type="text"], input[type="password"] {
+        border: 1px solid #cccccc;
+        height: 22px;
+        width: 295px;
+      }
+
+      #contact_form label {
+        width: 116px;
+      }
+
+      #error{
+        color: red !important;
+        text-align: right;
+      }
+
+      .star{
+        color: red;
+        font-weight: bold;
+        font-size: 14pt;
+      }
+    </style>
   </head>
   <body>
     <!-- Header -->
     <div class="container_12">
-      <div id="header" class="grid_12">
+      <div id="header-pages" class="grid_12">
         <!--<div id="logo" class="grid_4 alpha"></div>-->
         <div id="menu" class="grid_8 omega">
           <ul id="nav">
@@ -49,31 +53,42 @@
             <li><a href="/documentation" id="documentation">How to</a></li>
             <li><a href="/sign_up" id="signup">Sign up</a></li>
             <li><a id="contact" href="/contact">Contact</a></li>
-            <li class="last"><a href="/login" id="login">Login</a></li>
+            <li class="last"><a href="/my_account" id="login">My Account</a></li>
           </ul>
         </div>
       </div>
-      <div id="slider" class="grid_12">
-        <div class="slides_container">
-          <div class="slide"> <a href="#"><img src="/soho_template/images/office1.jpg" alt="" /></a> </div>
-          <div class="slide"> <a href="#"><img src="/soho_template/images/fern.jpg" alt="" /></a>
-            <div class="caption">Insert your caption here</div>
-          </div>
-          <div class="slide"> <a href="#"><img src="/soho_template/images/trees.jpg" alt="" /></a> </div>
-        </div>
-        <a href="#" class="prev"><img src="/soho_template/images/arrow-prev.png" width="24" height="43" alt="" /></a> <a href="#" class="next"><img src="/soho_template/images/arrow-next.png" width="24" height="43" alt="" /></a> </div>
       <div class="clear"></div>
     </div>
     <!-- End of Header -->
-    <div class="clear"></div>
     <!-- Main Section -->
+    <div class="main-section">
+      <div class="container_12 ">
+        <div class="grid_9">
+          &nbsp;
+          <%= yield %>
+        </div>
+        <div id="sidebar" class="grid_3">
+          <h1>Menu</h1>
+          <ul>
+            <li><a href="#">Change Password</a></li>
+            <li><a href="#">View API token</a></li>
+            <li><a href="#">Deactivate my account</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="clear"></div>
+
+
+    </div><br /><br /><br /><br /><br />
     <div id="content" class="shadow">
-      <%= yield %>
       <div class="container_12">
         <div class="grid_3">
           <h1>Introducing SMS API</h1>
           <p> We are happy to introduce an SMS API for sending SMS for free. YES you heard it its free. Offering a simple way to web developers send <b>FREE SMS</b> to your clients. Click <a href="#">here</a> to learn more
-          We understand that developers are always busy working on logic
+            We understand that developers are always busy working on logic
           </p>
         </div>
         <div class="grid_3 new-bullets">
@@ -109,7 +124,7 @@
       <div class="clear"></div>
       <div class="container_12 testimonials"> <span class="testimonial-message">&ldquo;Life is really simple, but we insist on making it complicated.&rdquo;</span> ― Confucius </div>
       <div class="clear"></div>
-      
+
       <div class="clear"></div>
     </div>
     <!-- End of Main Section -->
@@ -122,7 +137,7 @@
             <li><a href="/">Home</a></li>
             <li><a href="/documentation">How To</a></li>
             <li><a href="/sign_up">Sign up</a></li>
-            <li><a href="/login">Login</a></li>
+            <li><a href="/my_account">My account</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
@@ -152,11 +167,32 @@
         <div class="clear"></div>
       </div>
     </div>
-    <!-- End of Footer -->
+
+    <<!-- End of Footer -->
     <div class="clear"></div>
     <div id="tail">
       <div class="container_12">Copyright &copy; <a href="#">webTechmw.com</a> - All Rights Reserved | Design By <a target="_blank" href="#">WebTech++</a></div>
     </div>
-    <script type="text/javascript">Cufon.now();</script>
   </body>
 </html>
+
+
+
+<script type="text/javascript">
+  jQuery('#login').addClass('active');
+
+  function CopyToClipboard(containerid) {
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("Copy");
+
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      window.getSelection().addRange(range);
+      document.execCommand("Copy");
+      alert("text copied")
+    }}
+</script>
