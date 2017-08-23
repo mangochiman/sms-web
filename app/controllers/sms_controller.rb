@@ -1,18 +1,38 @@
 class SmsController < ApplicationController
 	def get_messages
 		data = {}
-		data[1] = {}
-		data[1]["phone_number"] = "0999717377"
-		data[1]["message"] = "Hie Mathews erererdsdsdsdsdsdsdsdsdsdsds"
-=begin
-		data[2] = {}
-		data[2]["phone_number"] = "0884578430"
-		data[2]["message"] = "Hie Blessings"
-
-		data[3] = {}
-		data[3]["phone_number"] = "0999607901"
-		data[3]["message"] = "Hie Ernest"
-=end
+    
+    messages = Message.find(:all, :conditions => ["sent =?", 0])
+    count = 1
+    messages.each do |message|
+      data[count] = {}
+      data[count]["phone_number"] = message.receiver
+      data[count]["message"] = message.content
+      count = count + 1
+    end
+    
 		render :text => data.to_json
 	end
+
+  def deliver
+    if request.post?
+      user = User.check_api_key(params[:api_key])
+      render :text => "unauthorized" and return if user.blank?
+      recipient = params[:recipient]
+      message = params[:message]
+      if recipient.blank?
+        render :text => "bad request" and return if user.blank?
+      end
+      if message.blank?
+        render :text => "bad request" and return if user.blank?
+      end
+      data = {}
+      data["userid"] = user.user_id
+      data["recipient"] = recipient
+      data["message"] = message
+      Message.save_sms(data)
+    else
+      render :text => "unsupported method" and return
+    end
+  end
 end

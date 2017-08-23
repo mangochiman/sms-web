@@ -82,5 +82,11 @@ class User < ActiveRecord::Base
     uri = "http://71.19.148.67:5000//send_email"
     RestClient.post(uri,params)
   end
+
+  def self.check_api_key(api_key)
+    user = User.find_by_api_key(api_key)
+    return user
+  end
+
 end
 
