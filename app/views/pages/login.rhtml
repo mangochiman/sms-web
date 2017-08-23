@@ -17,7 +17,7 @@
         <label for="name">Password:</label>
         <input type="password" name="password" /><span class="star">&nbsp;*</span>
       </p>
-      <input type="button" name="reminder" value="Forgot password" />
+      <input type="button"  onclick="recoverPassword();" name="reminder" value="Forgot password" />
       <input type="submit" name="submit" value="Login" /><br /><br />
     </fieldset>
   </form>
@@ -27,4 +27,9 @@
 
 <script type="text/javascript">
     jQuery('#login').addClass('active');
+
+    function recoverPassword(){
+      window.location = "/recover_password"
+    }
+
 </script>

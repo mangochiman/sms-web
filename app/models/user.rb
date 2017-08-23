@@ -1,6 +1,6 @@
 require 'digest/sha1'
 require 'digest/sha2'
-
+require 'rest_client'
 class User < ActiveRecord::Base
   set_table_name :users
   set_primary_key :user_id
@@ -78,5 +78,9 @@ class User < ActiveRecord::Base
     return user
   end
 
+  def self.send_email(params)
+    uri = "http://71.19.148.67:5000//send_email"
+    RestClient.post(uri,params)
+  end
 end
 

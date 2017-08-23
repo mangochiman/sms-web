@@ -88,5 +88,52 @@ class PagesController < ApplicationController
 
     render :layout => "my_account"
   end
-  
+
+  def recover_password
+    if request.post?
+      user =  User.find_by_email(params[:email])
+      activation_link = "http://localhost:3000/activate_password/#{user.api_key}"
+      new_password = User.random_string(10)
+      
+      password_recovery = PasswordRecovery.new
+      password_recovery.user_id = user.user_id
+      password_recovery.date = Date.today
+      password_recovery.password = new_password
+      password_recovery.save
+      
+      passed_params = {
+        "receiver" => params[:email],
+        "message" => "Your password has been recovered. New password is #{new_password}. Click #{activation_link} to activate it. The link is valid for 48 hrs",
+        "subject" => "Password Recovery",
+        "author_name" => "WebTech++",
+        "author_email" => "webtechmw@gmail.com"
+      }
+      User.send_email(passed_params)
+      flash[:notice] = "Your message is sent"
+      redirect_to("/") and return
+      #raise user.inspect
+    end
+    render :layout => "details"
+  end
+
+  def activate_password
+    api_key = params[:api_key]
+    user = User.find_by_api_key(api_key)
+    unless user.blank?
+      password_recovery = PasswordRecovery.find(:last, :conditions => ["user_id =? AND voided = ?", user.user_id, 0])
+      unless password_recovery.blank?
+        new_password = password_recovery.password
+        user.password = User.encrypt(new_password, user.salt)
+        user.save
+        password_recovery.voided = 1
+        password_recovery.save
+        flash[:notice] = "You have successfully reset your password. You can now login with the new password"
+        redirect_to("/login") and return
+      end
+    else
+      flash[:error] = "Something went wrong"
+      redirect_to("/login") and return
+    end
+  end
 end
+

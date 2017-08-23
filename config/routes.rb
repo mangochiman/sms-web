@@ -8,6 +8,8 @@ ActionController::Routing::Routes.draw do |map|
   map.my_account  '/my_account',  :controller => 'pages', :action => 'my_account'
   map.logout  '/logout',  :controller => 'pages', :action => 'logout'
   map.change_password  '/change_password',  :controller => 'pages', :action => 'change_password'
+  map.recover_password  '/recover_password',  :controller => 'pages', :action => 'recover_password'
+  map.activate_password  '/activate_password/:api_key',  :controller => 'pages', :action => 'activate_password'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
