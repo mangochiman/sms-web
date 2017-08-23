@@ -53,6 +53,30 @@ class PagesController < ApplicationController
   end
 
   def contact
+    if request.post?
+      contact = Contact.new
+      contact.author = params[:name]
+      contact.email = params[:email]
+      contact.message = params[:message]
+
+      passed_params = {
+        "receiver" => "webtechmw@gmail.com",
+        "message" => params[:message],
+        "subject" => "Client Query",
+        "author_name" => params[:name],
+        "author_email" => params[:email]
+      }
+
+      if (contact.save)
+        Contact.send_email(passed_params)
+        flash[:notice] = "Your message is sent. Thank you for your feedback."
+        redirect_to("/") and return
+      else
+        flash[:error] = "Failed to send your message. Try again"
+        redirect_to("/contact") and return
+      end
+    end
+    
     render :layout => "details"
   end
 
@@ -92,7 +116,7 @@ class PagesController < ApplicationController
   def recover_password
     if request.post?
       user =  User.find_by_email(params[:email])
-      activation_link = "http://localhost:3000/activate_password/#{user.api_key}"
+      activation_link = "http://smsapi.ninja/activate_password/#{user.api_key}"
       new_password = User.random_string(10)
       
       password_recovery = PasswordRecovery.new
@@ -135,5 +159,6 @@ class PagesController < ApplicationController
       redirect_to("/login") and return
     end
   end
+  
 end
 

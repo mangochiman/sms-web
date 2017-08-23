@@ -1,3 +1,30 @@
+<div class="grid_6">
+  <h1>Contact Form</h1>
+  <p> Your query will be responded instantly. Thank you for your feedback</p><br />
+  <p><span class="star">&nbsp;*</span> means required field</p>
+
+  <form action="/contact" id="contact_form" method="POST">
+    <fieldset>
+      <p>
+        <label for="name">Name:</label>
+        <input type="text" name="name" required/><span class="star">&nbsp;*</span>
+      </p>
+
+      <p>
+        <label for="name">Email</label>
+        <input type="email" name="email" required /><span class="star">&nbsp;*</span>
+      </p>
+
+      <p>
+        <label for="message">Message:</label>
+        <textarea name="message" cols="20" rows="10" required></textarea><span class="star">&nbsp;*</span>
+      </p>
+      <input type="submit" name="submit" value="Submit Query" /><br /><br />
+    </fieldset>
+  </form>
+</div>
+
+
 <script type="text/javascript">
-    jQuery('#contact').addClass('active');
+  jQuery('#contact').addClass('active');
 </script>
