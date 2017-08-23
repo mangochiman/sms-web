@@ -1,3 +1,139 @@
+<div class="grid_12">
+  <h1>Ruby on Rails</h1>
+  <p>Just copy the code below and implement it in your project.</p>
+  <pre>
+    <code data-language="ruby">
+      require 'rest_client'
+      address = "http://www.smsapi.ninja/deliver"
+      params = {
+        :api_key => "YOUR KEY",
+        :recipient => "phone_number",
+        :message => "message"
+      }
+      response = RestClient.post(address, params)
+    </code>
+  </pre>
+
+  <h1>PHP</h1>
+  <p>Just copy the code below and implement it in your project.</p>
+  <pre>
+    <code data-language="php">
+      $url = 'http://www.smsapi.ninja/deliver';
+      $data = array('api_key' => 'YOUR KEY',
+                    'recipient' => 'phone_number',
+                    'message' => 'message');
+     // use key 'http' even if you send the request to https://...
+      $options = array(
+      'http' => array(
+        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method'  => 'POST',
+        'content' => http_build_query($data)
+      )
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+    </code>
+  </pre>
+
+  <h1>PHP</h1>
+  <p>Just copy the code below and implement it in your project.</p>
+  <pre>
+    <code data-language="python">
+      import requests
+      data = {
+        'api_key': 'YOUR KEY',
+        'recipient': 'phone_number',
+        'message': 'message'
+      }
+      result = requests.post("http://www.smsapi.ninja/deliver", data)
+    </code>
+  </pre>
+
+  <h1>Java</h1>
+  <p>Just copy the code below and implement it in your project.</p>
+  <pre>
+    <code data-language="java">
+      HttpClient httpclient = HttpClients.createDefault();
+      HttpPost httppost = new HttpPost("http://www.smsapi.ninja/deliver");
+
+      // Request parameters and other properties.
+      List<NameValuePair> params = new ArrayList<NameValuePair>(3);
+      params.add(new BasicNameValuePair("api_key", "YOUR KEY"));
+      params.add(new BasicNameValuePair("recipient", "phone_number"));
+      params.add(new BasicNameValuePair("message", "message"));
+      httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+
+      //Execute and get the response.
+      HttpResponse response = httpclient.execute(httppost);
+      HttpEntity entity = response.getEntity();
+
+      if (entity != null) {
+        InputStream instream = entity.getContent();
+        try {
+          // do something useful
+      } finally {
+          instream.close();
+      }
+    }
+    </code>
+  </pre>
+
+  <h1>NODE.js</h1>
+  <p>Just copy the code below and implement it in your project.</p>
+  <pre>
+    <code data-language="node">
+      var request = require('request');
+      request.post('http://www.smsapi.ninja/deliver',
+      { json: { api_key: 'YOUR KEY',
+                recipient: 'phone_number',
+                message: 'message'
+              }
+          },
+      function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body)
+        }
+    }
+);
+    </code>
+  </pre>
+
+  <h1>Perl</h1>
+  <p>Just copy the code below and implement it in your project.</p>
+  <pre>
+    <code data-language="perl">
+      use LWP::UserAgent;
+
+      my $ua = LWP::UserAgent->new;
+
+      my $server_endpoint = "http://www.smsapi.ninja/deliver";
+
+      # set custom HTTP request header fields
+      my $req = HTTP::Request->new(POST => $server_endpoint);
+      $req->header('content-type' => 'application/json');
+      $req->header('x-auth-token' => 'kfksj48sdfj4jd9d');
+
+      # add POST data to HTTP request body
+      my $post_data = '{ "api_key": "YOUR KEY",
+                         "recipient": "phone_number",
+                         "message": "message"}';
+      $req->content($post_data);
+
+      my $resp = $ua->request($req);
+      if ($resp->is_success) {
+          my $message = $resp->decoded_content;
+          print "Received reply: $message\n";
+      }
+      else {
+          print "HTTP POST error code: ", $resp->code, "\n";
+          print "HTTP POST error message: ", $resp->message, "\n";
+      }
+    </code>
+  </pre>
+  <p>
+    Any bugs in the documentation should be directed to <a href="/contact">here</a>
+  </p>
+</div>
 <script type="text/javascript">
-    jQuery('#documentation').addClass('active');
+  jQuery('#documentation').addClass('active');
 </script>
