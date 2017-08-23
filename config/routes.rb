@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.change_password  '/change_password',  :controller => 'pages', :action => 'change_password'
   map.recover_password  '/recover_password',  :controller => 'pages', :action => 'recover_password'
   map.activate_password  '/activate_password/:api_key',  :controller => 'pages', :action => 'activate_password'
+  map.deliver  '/deliver',  :controller => 'sms', :action => 'deliver'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -42,7 +43,7 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-   map.root :controller => "pages", :action => "home"
+  map.root :controller => "pages", :action => "home"
 
   # See how all your routes lay out with "rake routes"
 
