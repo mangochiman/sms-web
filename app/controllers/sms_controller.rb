@@ -8,6 +8,8 @@ class SmsController < ApplicationController
       data[count] = {}
       data[count]["phone_number"] = message.receiver
       data[count]["message"] = message.content
+      message.sent = 1
+      message.save
       count = count + 1
     end
     
