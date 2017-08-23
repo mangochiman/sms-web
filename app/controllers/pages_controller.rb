@@ -33,6 +33,18 @@ class PagesController < ApplicationController
 
 
   def login
+    if request.post?
+      user = User.find_by_username(params['username'])
+      logged_in_user = User.authenticate(params[:username], params[:password])
+
+      if logged_in_user
+        session[:user] = user
+        redirect_to("/my_account") and return
+      else
+        flash[:error] = "Invalid username or password"
+        redirect_to("/login") and return
+      end
+    end
     render :layout => "details"
   end
 
@@ -45,6 +57,35 @@ class PagesController < ApplicationController
   end
 
   def my_account
+    @user = session[:user]
+    render :layout => "my_account"
+  end
+
+  def logout
+    reset_session
+    redirect_to("/") and return
+  end
+
+  def change_password
+    @user = session[:user]
+    
+    if request.post?
+      if (User.authenticate(@user.username, params[:old_password]))
+        if (params[:new_password] == params[:confirm_password])
+          @user.password = User.encrypt(params[:new_password], @user.salt)
+          @user.save
+          flash[:notice] = "You have successfully updated your password. Your new password is <b>#{params[:new_password]}</b>"
+          redirect_to("/my_account") and return
+        else
+          flash[:error] = "Unable to save. New Password and Confirmation password does not match"
+          redirect_to("/change_password") and return
+        end
+      else
+        flash[:error] = "Unable to save. Old password is not correct"
+        redirect_to("/change_password") and return
+      end
+    end
+
     render :layout => "my_account"
   end
   

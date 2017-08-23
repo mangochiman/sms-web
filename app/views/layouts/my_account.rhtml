@@ -53,7 +53,11 @@
             <li><a href="/documentation" id="documentation">How to</a></li>
             <li><a href="/sign_up" id="signup">Sign up</a></li>
             <li><a id="contact" href="/contact">Contact</a></li>
-            <li class="last"><a href="/my_account" id="login">My Account</a></li>
+            <% if session[:user].blank? %>
+              <li class="last"><a href="/login" id="login">Login</a></li>
+            <% else %>
+              <li class="last"><a href="/my_account" id="login">My Account</a></li>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -70,10 +74,10 @@
         <div id="sidebar" class="grid_3">
           <h1>Menu</h1>
           <ul>
-            <li><a href="#">Change Password</a></li>
-            <li><a href="#">View API token</a></li>
-            <li><a href="#">Deactivate my account</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="change_password">Change Password</a></li>
+            <li><a href="#" onclick="viewAPItoken();">View API token</a></li>
+            <!--<li><a href="#">Deactivate my account</a></li>-->
+            <li><a href="/logout">Logout</a></li>
           </ul>
         </div>
       </div>
@@ -137,7 +141,11 @@
             <li><a href="/">Home</a></li>
             <li><a href="/documentation">How To</a></li>
             <li><a href="/sign_up">Sign up</a></li>
-            <li><a href="/my_account">My account</a></li>
+            <% if session[:user].blank? %>
+              <li><a href="/login">Login</a></li>
+            <% else %>
+              <li><a href="/my_account">My Account</a></li>
+            <% end %>
             <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
@@ -180,7 +188,7 @@
 
 <script type="text/javascript">
   jQuery('#login').addClass('active');
-
+  var APItoken = '<%= @user.api_key %>'
   function CopyToClipboard(containerid) {
     if (document.selection) {
       var range = document.body.createTextRange();
@@ -195,4 +203,9 @@
       document.execCommand("Copy");
       alert("text copied")
     }}
+
+  function viewAPItoken(){
+    alert(APItoken);
+  }
+  
 </script>

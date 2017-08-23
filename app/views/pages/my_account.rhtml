@@ -1,0 +1,23 @@
+<h1>My Details</h1><br />
+<table style="width: 100%;">
+  <tr>
+    <td>First Name</td>
+    <td><b><%= @user.first_name %> </b></td>
+  </tr>
+  <tr>
+    <td>Last Name</td>
+    <td><b><%= @user.last_name %> </b></td>
+  </tr>
+  <tr>
+    <td>Username</td>
+    <td><b><%= @user.username %> </b></td>
+  </tr>
+  <tr>
+    <td>E-mail</td>
+    <td><b><%= @user.email %> </b></td>
+  </tr>
+  <tr>
+    <td>Date Created</td>
+    <td><b><%= @user.created_at.to_date.strftime("%d-%b-%Y") %> </b></td>
+  </tr>
+</table><br /><br /><br />

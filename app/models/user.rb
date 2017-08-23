@@ -15,8 +15,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :message => ' already taken'
   validates_uniqueness_of :phone_number, :phone_number => ' already taken'
 
-  #before_save :set_password
-
   cattr_accessor :current_user
 
   def try_to_login

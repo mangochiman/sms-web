@@ -53,7 +53,11 @@
             <li><a href="/documentation" id="documentation">How to</a></li>
             <li><a href="/sign_up" id="signup">Sign up</a></li>
             <li><a id="contact" href="/contact">Contact</a></li>
-            <li class="last"><a href="/login" id="login">Login</a></li>
+            <% if session[:user].blank? %>
+              <li class="last"><a href="/login" id="login">Login</a></li>
+            <% else %>
+              <li class="last"><a href="/my_account" id="login">My Account</a></li>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -131,7 +135,11 @@
             <li><a href="/">Home</a></li>
             <li><a href="/documentation">How To</a></li>
             <li><a href="/sign_up">Sign up</a></li>
-            <li><a href="/login">Login</a></li>
+            <% if session[:user].blank? %>
+              <li><a href="/login">Login</a></li>
+            <% else %>
+              <li><a href="/my_account">My Account</a></li>
+            <% end %>
             <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
