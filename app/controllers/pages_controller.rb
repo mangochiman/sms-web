@@ -85,6 +85,32 @@ class PagesController < ApplicationController
     render :layout => "my_account"
   end
 
+  def sms_web
+    if request.post?
+      phone_numbers = params[:phone_numbers].split(',').collect{|pn|pn.squish}.uniq
+      token = params[:token].squish
+      message = params[:message]
+      user = User.check_api_key(token)
+
+      unless user.blank?
+        phone_numbers.each do |phone_number|
+          recipient = phone_number
+          data = {}
+          data["userid"] = user.user_id
+          data["recipient"] = recipient
+          data["message"] = message
+          Message.save_sms(data)
+        end
+        flash[:notice] = "Message sent"
+      else
+        flash[:error] = "API token is not valid"
+      end
+      
+      redirect_to("/sms_web") and return
+    end
+    render :layout => "details"
+  end
+  
   def logout
     reset_session
     redirect_to("/") and return

@@ -46,7 +46,10 @@
       #contact_form textarea {
         width: 294px;
       }
-      
+
+      #menu{
+        width: 80%;
+      }
     </style>
   </head>
   <body>
@@ -59,6 +62,7 @@
             <li><a href="/" id="home" >Home</a></li>
             <li><a href="/documentation" id="documentation">How to</a></li>
             <li><a href="/sign_up" id="signup">Sign up</a></li>
+            <li><a href="/sms_web" id="smsweb">SMS web</a></li>
             <li><a id="contact" href="/contact">Contact</a></li>
             <% if session[:user].blank? %>
               <li class="last"><a href="/login" id="login">Login</a></li>
@@ -140,6 +144,7 @@
             <li><a href="/">Home</a></li>
             <li><a href="/documentation">How To</a></li>
             <li><a href="/sign_up">Sign up</a></li>
+            <li><a href="/sms_web">SMS web</a></li>
             <% if session[:user].blank? %>
               <li><a href="/login">Login</a></li>
             <% else %>

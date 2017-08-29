@@ -1,0 +1,36 @@
+<div class="grid_6">
+  <h1>Web SMS</h1>
+  <p> You can send an SMS using our form below using your API token that was sent to you after sign up</p><br />
+  <% if flash[:notice] %>
+    <span style="color: green; font-weight: bold;"><%= flash[:notice] %> </span><br />
+  <% end %>
+  <% if flash[:error] %>
+    <span id="error" style="color: red; font-weight: bold;"><%= flash[:error] %> </span><br /><br /><br />
+  <% end %>
+  <p><span class="star">&nbsp;*</span> means required field</p>
+
+  <form action="/sms_web" id="contact_form" method="POST">
+    <fieldset>
+      <p>
+        <label for="token"><b>API token</b></label>
+        <input type="text" name="token" required/><span class="star">&nbsp;*</span>
+      </p>
+
+      <p>
+        <label for="phone_numbers"><b>Phone numbers:</b></label>
+        <textarea name="phone_numbers" placeholder="Separate multiple numbers with a comma" cols="20" rows="2" required></textarea><span class="star">&nbsp;*</span>
+      </p>
+
+      <p>
+        <label for="message"><b>Message:</b></label>
+        <textarea name="message" cols="20" rows="10" required></textarea><span class="star">&nbsp;*</span>
+      </p>
+      <input type="submit" name="submit" value="Send SMS" /><br /><br />
+    </fieldset>
+  </form>
+</div>
+
+
+<script type="text/javascript">
+  jQuery('#smsweb').addClass('active');
+</script>
