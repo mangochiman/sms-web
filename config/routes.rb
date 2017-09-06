@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.change_password  '/change_password',  :controller => 'pages', :action => 'change_password'
   map.recover_password  '/recover_password',  :controller => 'pages', :action => 'recover_password'
   map.activate_password  '/activate_password/:api_key',  :controller => 'pages', :action => 'activate_password'
+  map.verify_api_aunthenticity  '/verify_api_aunthenticity/:api_key',  :controller => 'pages', :action => 'verify_api_aunthenticity'
   map.deliver  '/deliver',  :controller => 'sms', :action => 'deliver'
   map.sms_web  '/sms_web',  :controller => 'pages', :action => 'sms_web'
   # The priority is based upon order of creation: first created -> highest priority.
