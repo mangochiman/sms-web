@@ -19,6 +19,9 @@ class PagesController < ApplicationController
       user = User.new_user(params)
 
       if user.save
+        api_key = ApiKey.new_api_key(user)
+        api_key.save
+
         flash[:notice] = "You have created your account. You may now login. Your API key is <br />"
         flash[:notice] += " <b id='copy' onclick='CopyToClipboard(\"copy\")'>#{user.api_key}</b><br />"
         flash[:notice] += "Keep it safe. We have also sent it to your email address"

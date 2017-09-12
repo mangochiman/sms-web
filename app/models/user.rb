@@ -61,6 +61,12 @@ class User < ActiveRecord::Base
     return user_roles.last.role
   end
 
+  def api_key
+    api_key = self.api_keys.last
+    return api_key.key unless api_key.blank?
+    return api_key
+  end
+  
   def self.generate_api_key
     string = Digest::SHA1.hexdigest([Time.now, rand].join)
     return string
@@ -76,7 +82,6 @@ class User < ActiveRecord::Base
     user.password = self.encrypt(params[:password], salt)
     user.salt = salt
     user.username = params[:username]
-    user.api_key = self.generate_api_key
     return user
   end
 
@@ -91,7 +96,21 @@ class User < ActiveRecord::Base
   end
 
   def self.api_key_status(user)
-    status = "Active"
+    status = "Disabled"
+    api_key = user.api_keys.last
+    today = Date.today
+
+    unless api_key.blank?
+      expiry_date = api_key.expiry_date.to_date rescue nil
+      unless expiry_date.blank?
+        if (today > expiry_date)
+          status = "Expired"
+        else
+          status = "Active"
+        end
+      end
+    end
+    
     return status
   end
 
