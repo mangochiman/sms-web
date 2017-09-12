@@ -197,7 +197,7 @@ class PagesController < ApplicationController
       data["last_name"] = user.last_name
       data["phone_number"] = user.phone_number
       data["email"] = user.email
-      data["created_at"] = user.created_at.to_date
+      data["created_at"] = user.created_at.to_date.strftime("%d/%b/%Y")
       data["api_key_status"] = User.api_key_status(user)
       data["api_expiry_date"] = User.api_key_expiry_date(user)
       data["api_key"] = api_key
