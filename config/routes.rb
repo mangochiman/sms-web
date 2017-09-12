@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.get_messages  '/get_messages',  :controller => 'sms', :action => 'get_messages'
+  map.get_messages  '/get_messages/:api_key',  :controller => 'sms', :action => 'get_messages'
   map.documentation  '/documentation',  :controller => 'pages', :action => 'documentation'
   map.sign_up  '/sign_up',  :controller => 'pages', :action => 'sign_up'
   map.sample_code  '/sample_code',  :controller => 'pages', :action => 'sample_code'

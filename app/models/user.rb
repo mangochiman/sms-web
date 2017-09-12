@@ -91,7 +91,8 @@ class User < ActiveRecord::Base
   end
 
   def self.check_api_key(api_key)
-    user = User.find_by_api_key(api_key)
+    #user = User.find_by_api_key(api_key)
+    user = ApiKey.find_by_key(api_key).user rescue nil
     return user
   end
 
