@@ -190,7 +190,7 @@ class PagesController < ApplicationController
     api_key = params[:api_key]
     user = User.find_by_api_key(api_key)
     data = {}
-    sleep(10)
+    #sleep(10)
     unless user.blank?
       data["username"] = user.username
       data["first_name"] = user.first_name
@@ -198,8 +198,9 @@ class PagesController < ApplicationController
       data["phone_number"] = user.phone_number
       data["email"] = user.email
       data["created_at"] = user.created_at.to_date
-      data["api_key_status"] = "Active"
-      data["api_expiry_date"] = Date.today + 3.months
+      data["api_key_status"] = User.api_key_status(user)
+      data["api_expiry_date"] = User.api_key_expiry_date(user)
+      data["api_key"] = api_key
     end
 
     render :text => data.to_json

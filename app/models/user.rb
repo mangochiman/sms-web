@@ -88,5 +88,16 @@ class User < ActiveRecord::Base
     return user
   end
 
+  def self.api_key_status(user)
+    status = "Active"
+    return status
+  end
+
+  def self.api_key_expiry_date(user)
+    expiry_date = Date.today + 30.days
+    formatted_expiry_date = expiry_date.strftime("%d/%b/%Y")
+    return formatted_expiry_date
+  end
+  
 end
 
