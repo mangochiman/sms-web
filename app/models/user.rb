@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   set_primary_key :user_id
 
   has_many :user_roles, :dependent => :destroy
+  has_many :api_keys, :foreign_key => :user_id, :dependent => :destroy
+  
   validates_presence_of :first_name, :message => ' can not be blank'
   validates_presence_of :last_name, :message => ' can not be blank'
   validates_presence_of :username, :message => ' can not be blank'
