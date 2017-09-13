@@ -4,6 +4,7 @@ class CreateApiKeys < ActiveRecord::Migration
       t.integer :user_id
       t.date :expiry_date
       t.string :key
+      t.integer :verified, :default => 0
       t.timestamps
     end
   end

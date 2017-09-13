@@ -191,7 +191,8 @@ class PagesController < ApplicationController
 
   def verify_api_aunthenticity
     api_key = params[:api_key]
-    user = User.find_by_api_key(api_key)
+    api_key_row = ApiKey.find_by_key(api_key)
+    user = api_key_row.user rescue nil
     data = {}
     #sleep(10)
     unless user.blank?
@@ -204,6 +205,10 @@ class PagesController < ApplicationController
       data["api_key_status"] = User.api_key_status(user)
       data["api_expiry_date"] = User.api_key_expiry_date(user)
       data["api_key"] = api_key
+      data["verified"] = api_key_row.verified
+
+      api_key_row.verified = 1
+      api_key_row.save
     end
 
     render :text => data.to_json
