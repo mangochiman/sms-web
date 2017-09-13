@@ -194,8 +194,11 @@ class PagesController < ApplicationController
     api_key_row = ApiKey.find_by_key(api_key)
     user = api_key_row.user rescue nil
     data = {}
-    #sleep(10)
+    data["user_available"] = "false"
+    verified = false
     unless user.blank?
+      verified = true if (api_key_row.verified == 1)
+
       data["username"] = user.username
       data["first_name"] = user.first_name
       data["last_name"] = user.last_name
@@ -205,7 +208,8 @@ class PagesController < ApplicationController
       data["api_key_status"] = User.api_key_status(user)
       data["api_expiry_date"] = User.api_key_expiry_date(user)
       data["api_key"] = api_key
-      data["verified"] = api_key_row.verified
+      data["verified"] = verified.to_s
+      data["user_available"] = "true"
 
       api_key_row.verified = 1
       api_key_row.save
