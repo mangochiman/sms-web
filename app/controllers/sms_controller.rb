@@ -38,7 +38,7 @@ class SmsController < ApplicationController
       end
 
       api_key_status = User.api_key_status(user)
-      if (api_key_status.match(/ACTIVE/))
+      if (api_key_status.match(/ACTIVE/i))
         data = {}
         data["userid"] = user.user_id
         data["recipient"] = recipient
