@@ -32,18 +32,26 @@ class SmsController < ApplicationController
       if recipient.blank?
         render :text => "bad request" and return
       end
+
       if message.blank?
         render :text => "bad request" and return
       end
+
+      api_key_status = User.api_key_status(user)
+      if (api_key_status.match(/ACTIVE/))
+        data = {}
+        data["userid"] = user.user_id
+        data["recipient"] = recipient
+        data["message"] = message
+        Message.save_sms(data)
+        render :text => "success" and return
+      else
+        render :text => "Account Status: #{api_key_status}" and return
+      end
       
-      data = {}
-      data["userid"] = user.user_id
-      data["recipient"] = recipient
-      data["message"] = message
-      Message.save_sms(data)
-      render :text => "success" and return
     else
       render :text => "unsupported method" and return
     end
   end
+  
 end

@@ -72,6 +72,13 @@ class User < ActiveRecord::Base
     return string
   end
 
+  def generate_numeric_api_key(len)
+    chars = ("0".."9").to_a
+    newpass = self.user_id.to_s
+    1.upto(len) { |i| newpass << chars[rand(chars.size-1)] }
+    return newpass
+  end
+
   def self.new_user(params)
     salt = self.random_string(10)
     user = User.new

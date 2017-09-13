@@ -8,7 +8,7 @@ class ApiKey < ActiveRecord::Base
     api_key = ApiKey.new
     api_key.user_id = user.user_id
     api_key.expiry_date = (Date.today + 30.days)
-    api_key.key = User.generate_api_key
+    api_key.key = user.generate_numeric_api_key(6)#User.generate_api_key
     return api_key
   end
 
